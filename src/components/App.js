@@ -1,5 +1,7 @@
 //TODO: STEP 1 - Import the useState hook.
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
+
 import "./App.css";
 import TopRow from "./TopRow";
 import BottomRow from "./BottomRow";
@@ -20,6 +22,26 @@ function App() {
   const [toGo, setToGo] = useState(10);
   const [ballOn, setBallOn] = useState(40);
 
+  // hook for the timer
+  const [minutes, setMinutes] = useState(10);
+  const [seconds, setSeconds] = useState(0);
+
+  // useEffect for the timer
+  useEffect(() => {
+    const tick = window.setInterval(() => {
+      if (seconds < 10) {
+        setSeconds("0" + seconds);
+      } else if (seconds <= 0) {
+        setMinutes(minutes - 1);
+        setSeconds(59);
+      } else {
+        setSeconds(seconds - 1);
+      }
+    }, 1000);
+    return window.clearInterval(tick);
+  }, [minutes, seconds]);
+
+
   return (
     <div className="container">
       <section className="scoreboard">
@@ -28,6 +50,8 @@ function App() {
           awayName="Patriots"
           home={homeScore}
           away={awayScore}
+          min={minutes}
+          sec={seconds}
         />
         <BottomRow down={down} quarter={quarter} toGo={toGo} ballOn={ballOn} />
       </section>
