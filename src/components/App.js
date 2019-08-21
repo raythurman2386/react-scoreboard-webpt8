@@ -16,6 +16,10 @@ function App() {
   const [quarter, setQuarter] = useState(1);
   const [down, setDown] = useState(1);
 
+  // hooks for toGo and ballOn
+  const [toGo, setToGo] = useState(10);
+  const [ballOn, setBallOn] = useState(40);
+
   return (
     <div className='container'>
       <section className='scoreboard'>
