@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./App.css";
+import React, { useState, useEffect, useRef } from 'react';
+import './App.css';
 
 // custom useInterval hook setup
 function useInterval(callback, delay) {
@@ -29,7 +29,9 @@ const Timer = props => {
 
   // useInterval for the timer
   useInterval(() => {
-    if (seconds <= 0) {
+    if (seconds === 0 && minutes === 0) {
+      alert('Game Over!!');
+    } else if (seconds <= 0) {
       setMinutes(minutes - 1);
       setSeconds(59);
     } else {
@@ -37,11 +39,11 @@ const Timer = props => {
     }
   }, 1000);
 
-  let newMinute = minutes < 10 ? "0" + minutes : minutes;
-  let newSecond = seconds < 10 ? "0" + seconds : seconds;
+  let newMinute = minutes < 10 ? '0' + minutes : minutes;
+  let newSecond = seconds < 10 ? '0' + seconds : seconds;
 
   // Return the timer using string interpolation to have the colon
-  return <div className="timer">{`${newMinute}:${newSecond}`}</div>;
+  return <div className='timer'>{`${newMinute}:${newSecond}`}</div>;
 };
 
 export default Timer;
