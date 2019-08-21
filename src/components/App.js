@@ -19,7 +19,7 @@ function App() {
     <div className='container'>
       <section className='scoreboard'>
         <TopRow homeName='Colts' awayName='Patriots' home={homeScore} away={awayScore} />
-        <BottomRow />
+        <BottomRow down={down} />
       </section>
       <section className='buttons'>
         <HomeButtons touchdown={() => setHomeScore(homeScore + 7)} fieldgoal={() => setHomeScore(homeScore + 3)} />
