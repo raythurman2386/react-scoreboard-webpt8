@@ -21,14 +21,47 @@
 
 */
 
-import React from "react";
-import "./App.css";
+import React, { useState, useEffect, useRef } from 'react';
+import './App.css';
 
-const Timer = props => {
-  let minutes = props.min;
-  let seconds = props.sec;
+// custom useInterval hook setup
+function useInterval(callback, delay) {
+	const savedCallback = useRef();
 
-  return <div className="timer">{`${minutes}:${seconds}`}</div>;
+	// Remember the latest callback.
+	useEffect(
+		() => {
+			savedCallback.current = callback;
+		},
+		[ callback ],
+	);
+
+	// Set up the interval.
+	useEffect(
+		() => {
+			function tick() {
+				savedCallback.current();
+			}
+			if (delay !== null) {
+				let id = setInterval(tick, delay);
+				return () => clearInterval(id);
+			}
+		},
+		[ delay ],
+	);
+}
+
+const Timer = (props) => {
+	// hook for the timer
+	const [ minutes, setMinutes ] = useState(10);
+	const [ seconds, setSeconds ] = useState(0);
+
+	// useInterval for the timer
+	useInterval(() => {
+		seconds <= 0 ? setMinutes(minutes - 1) && setSeconds(59) : setSeconds(seconds - 1);
+	}, 1000);
+
+	return <div className='timer'>{`${minutes}:${seconds}`}</div>;
 };
 
 export default Timer;
