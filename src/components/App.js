@@ -13,6 +13,7 @@ function App() {
 
   // hooks for the down and quarter
   const [quarter, setQuarter] = useState(1);
+  const [down, setDown] = useState(1);
 
   return (
     <div className='container'>
