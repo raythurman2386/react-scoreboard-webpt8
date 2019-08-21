@@ -29,6 +29,9 @@ function App() {
           down={() => {
             setDown(down === 4 ? 1 : down + 1);
           }}
+          quarter={() => {
+            setQuarter(quarter === 4 ? alert('Game Over!') : quarter + 1);
+          }}
         />
       </section>
     </div>
