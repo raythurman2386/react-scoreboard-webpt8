@@ -1,26 +1,3 @@
-/*
-  tick() {
-  if(this.state.seconds <= 0){
-  this.setState(state => ({
-  min: state.min - 1,
-      seconds: 59
-    }));
-  }
-    this.setState(state => ({
-      seconds: state.seconds - 1
-    }));
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-*/
-
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
@@ -61,6 +38,7 @@ const Timer = (props) => {
 		seconds <= 0 ? setMinutes(minutes - 1) && setSeconds(59) : setSeconds(seconds - 1);
 	}, 1000);
 
+	// Return the timer using string interpolation to have the colon
 	return <div className='timer'>{`${minutes}:${seconds}`}</div>;
 };
 
