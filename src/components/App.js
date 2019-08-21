@@ -5,6 +5,7 @@ import TopRow from './TopRow';
 import BottomRow from './BottomRow';
 import HomeButtons from './Buttons/HomeButtons';
 import AwayButtons from './Buttons/AwayButtons';
+import BottomRowButtons from './Buttons/BottomRowButtons';
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
@@ -24,6 +25,11 @@ function App() {
       <section className='buttons'>
         <HomeButtons touchdown={() => setHomeScore(homeScore + 7)} fieldgoal={() => setHomeScore(homeScore + 3)} />
         <AwayButtons touchdown={() => setAwayScore(awayScore + 7)} fieldgoal={() => setAwayScore(awayScore + 3)} />
+        <BottomRowButtons
+          down={() => {
+            setDown(down === 4 ? 1 : down + 1);
+          }}
+        />
       </section>
     </div>
   );
